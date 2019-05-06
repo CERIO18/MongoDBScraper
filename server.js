@@ -3,8 +3,6 @@ var express = require("express");
 var mongoose = require("mongoose");
 var expressHandlebars = require("express-handlebars");
 var bodyParser = require("body-parser");
-var cheerio = require("cheerio");
-
 
 //Set up our port to be either the host's designated port, or 3000
 var PORT = process.env.PORT || 3000;
@@ -12,19 +10,21 @@ var PORT = process.env.PORT || 3000;
 //Incorporate our Express app
 var app = express();
 
-require("./config/routes")(app);
-
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
-
-app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
 //set up an Express Router
 var router = express.Router();
 
+//Require our routes
+require("./config/routes")(router);
+
 //Set our public folder as a static directory
 app.use(express.static(__dirname + "/public"));
+
+//Connect hanldebars
+app.engine("handlebars", expressHandlebars({defaultLayout: "main"}));
+app.set("view engine", "handlebars");
+
+//Body Parser
+app.use(bodyParser.urlencoded({extended: false}));
 
 //Have every request go through our router middleware
 app.use(router);
