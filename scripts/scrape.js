@@ -8,10 +8,10 @@ var scrape = function (cb) {
 
     var articles = [];
 
-    $("theme-summary").each(function(i, element){
+    $("div.css-1100km").each(function(i, element){
 
-        var head = $(this).children(".story-heading").text().trim();
-        var sum = $(this).children(".summary").text().trim();
+        var head = $(this).children("a.article-title").text().trim();
+        var sum = $(this).children("href").text().trim();
         
         if (head && sum) {
             var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
@@ -23,6 +23,7 @@ var scrape = function (cb) {
             };
 
             articles.push(dataToAdd); 
+            console.log(articles)
         }
     })
     cb(articles);

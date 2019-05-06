@@ -7,5 +7,9 @@ module.exports = function(router) {
 
   router.get("/saved", function(req,res) {
     res.render("saved");
+
   });
+  router.get("/scrape",function(req,res) {
+    res.render("scrape");
+});
 }
