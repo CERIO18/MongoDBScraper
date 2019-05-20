@@ -2,7 +2,7 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 var scrape = function() {
-    // Scrape the CNN website
+    // Scrape the Boulder website
     return axios.get("https://www.dailycamera.com/news/").then(function(res) {
       var $ = cheerio.load(res.data);
       console.log("scraping");
@@ -15,7 +15,7 @@ var scrape = function() {
         var url = $(this).find("a").attr("href");
         var sum = $(this).find("p").text().trim();
         
-        if (head && sum) {
+        if (head && sum && url) {
             var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
             var sumNeat = sum.replace(/(\r\n|\n|\r|\t|\s+)/gm," ").trim();
 
@@ -29,7 +29,7 @@ var scrape = function() {
             console.log(articles)
         }
     })
-    return(articles);
+    return articles;
 });
 };
 module.exports = scrape;
