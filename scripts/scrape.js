@@ -2,14 +2,14 @@ var request = require("request");
 var cheerio = require("cheerio");
 
 var scrape = function() {
-    // Scrape the NYTimes website
-    return axios.get("http://www.nytimes.com").then(function(res) {
+    // Scrape the CNN website
+    return axios.get("https://www.dailycamera.com/news/").then(function(res) {
       var $ = cheerio.load(res.data);
       console.log("scraping");
       // Make an empty array to save our article info
       var articles = [];
 
-    $("div.css-1100km").each(function(i, element){
+    $("span.dfm-title").each(function(i, element){
 
         var head = $(this).find("h2").text().trim();
         var url = $(this).find("a").attr("href");
@@ -22,7 +22,7 @@ var scrape = function() {
             var dataToAdd = {
                 headline: headNeat,
                 summary: sumNeat,
-                url: "https://www.nytimes.com" + url
+                url: "https://www.dailycamera.com/news/" + url
             };
 
             articles.push(dataToAdd); 
