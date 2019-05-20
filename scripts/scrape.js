@@ -12,7 +12,7 @@ var scrape = function() {
 
     $("span.dfm-title").each(function(i, element){
 
-        var head = $(this).find("h5").text().trim();
+        var head = $(this).find("h5.entry-title").text().trim();
         var url = $(this).find("a").attr("href");
         var sum = $(this).find("p").text().trim();
         
