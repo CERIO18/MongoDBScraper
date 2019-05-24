@@ -6,8 +6,10 @@ var Headline = require("../models/Headline");
 
 module.exports = {
 fetch: function(cb) {
+    console.log("please work")
         scrape(function(data) {
             var articles = data;
+            console.log("data: ", articles)
             for (var i=0; i < articles.length; i++) {
                 articles[i].date = makeDate();
                 articles[i].saved = false;
@@ -37,3 +39,4 @@ get: function(query, cb) {
             }, {}, cb);
     }
 }
+

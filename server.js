@@ -19,7 +19,7 @@ require("./config/routes")(router);
 //Set our public folder as a static directory
 app.use(express.static(__dirname + "/public"));
 
-//Connect hanldebars
+//Connect handlebars
 app.engine("handlebars", expressHandlebars({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
